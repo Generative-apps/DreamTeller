@@ -19,7 +19,7 @@ export function App() {
   return (
     <ThemeProvider theme={theme}>
       <UserProvider>
-        <BrowserRouter>
+        <BrowserRouter basename="/dream">
           <Routes>
             <Route path="/" element={<MainScreen />} />
             <Route path="/app" element={<FormScreen />} />

@@ -1,0 +1,21 @@
+version: "3.3"
+services:
+  redis:
+    image: redis
+    restart: on-failure
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+      - POSTGRES_DB=${DB_NAME}
+  dreamApp:
+    build: .
+    image: dreamTeller
+    expose:
+      - "5000"
+    ports:
+      - 6379:6379
+    environment:
+      # ENV: PROD
+    restart: on-failure
+    depends_on:
+      - redis

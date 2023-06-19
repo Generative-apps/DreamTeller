@@ -37,9 +37,10 @@ def delete_old_records():
         if idle >=  3600:
             redis_instance.delete(key)
 
-def start(hour_delete_interval:int):
+def start(hour_delete_interval:int, config:dict):
+
     global redis_instance
-    redis_instance = redis.Redis(host='127.0.01', port=6379, decode_responses=True)
+    redis_instance = redis.Redis(host=config.get('host', 'localhost'), port=config.get("port", 6379), decode_responses=True)
     # Create the background scheduler
     scheduler = BackgroundScheduler()
     # Create the job

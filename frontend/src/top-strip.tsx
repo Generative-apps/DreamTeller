@@ -57,7 +57,7 @@ function TopStrip() {
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            href="/dream"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },

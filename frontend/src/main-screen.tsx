@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useState, CSSProperties } from "react";
 import main from "./assets/images/main.png";
 import { Fab, Typography } from "@mui/material";
 import { BalconyRounded } from "@mui/icons-material";
-
 const PHASES = [
   "Describe your dream",
   "answer questions",
@@ -25,7 +24,7 @@ export function MainScreen() {
             color="primary"
             aria-label="go"
             size="large"
-            href="/app"
+            href="/dream/app"
           >
             <BalconyRounded sx={{ mr: 1 }} />
             Start

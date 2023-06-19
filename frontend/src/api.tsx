@@ -2,6 +2,8 @@ import { log } from "console";
 import { read } from "fs";
 import React, { useEffect, useState } from "react";
 
+const api_prefix = "/dream/api";
+
 export function useAsyncFetch(fetchFunction: (...args: any[]) => Promise<any>) {
   const [res, setRes] = useState<any>();
   const [loading, setLoading] = useState(false);
@@ -44,7 +46,7 @@ export async function sendDreamDescription(
   dreamDescription: string,
   user_id?: string
 ) {
-  return fetch("/tell", {
+  return fetch(`${api_prefix}/tell`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -54,7 +56,7 @@ export async function sendDreamDescription(
 }
 
 export async function fetchinterpretation(answers: string[], user_id: string) {
-  return fetch("/answer", {
+  return fetch(`${api_prefix}/answer`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

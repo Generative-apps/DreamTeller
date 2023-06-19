@@ -1,0 +1,15 @@
+
+server {
+    listen 80;
+    server_name localhost;
+
+    location /dream {
+        proxy_pass http://host.docker.internal:5000/dream;
+    }
+
+    location / {
+        proxy_pass http://host.docker.internal:5001;
+    }
+
+}
+

@@ -3,8 +3,8 @@ from langchain.chains import ConversationChain
 from langchain.memory import ConversationBufferMemory, ChatMessageHistory
 from langchain.schema import HumanMessage, AIMessage
 from langchain import PromptTemplate
-from engine.prompt import prompt_template
-from engine.config import CONF
+from backend.engine.prompt import prompt_template
+from backend.engine.config import CONF
 from json import dumps, loads
 
 MEMORY_NAME = 'history'

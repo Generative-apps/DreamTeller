@@ -1,14 +1,13 @@
 {
-  "name": "senti-trends-client",
+  "name": "dream-teller",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:5000",
+  "homepage": "http://localhost:5000/dream",
   "dependencies": {
-    "@emotion/react": "11.10.6",
-    "@emotion/styled": "11.10.6",
-    "@material-ui/icons": "^4.11.3",
-    "@mui/icons-material": "5.11.11",
-    "@mui/material": "5.11.12",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "5.11.16",
+    "@mui/material": "5.13.5",
     "@react-spring/web": "^9.7.2",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "13.4.0",
@@ -49,6 +48,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.18.6",
     "react-router-dom": "^6.11.2"
   }
 }

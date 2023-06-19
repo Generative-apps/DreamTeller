@@ -1,0 +1,9 @@
+{
+  "max_interpretations": 3,
+  "environment": "dev",
+  "redis": {
+    "host": "localhost",
+    "port": 6379,
+    "db": 0
+  }
+}
