@@ -7,15 +7,19 @@ services:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASS}
       - POSTGRES_DB=${DB_NAME}
+    ports:
+      - 6379:6379
+    expose:
+      - "6379"
   dreamApp:
     build: .
-    image: dreamTeller
+    image: dream
     expose:
       - "5000"
     ports:
-      - 6379:6379
+      - 5000:5000
     environment:
-      # ENV: PROD
+      ENV: PROD
     restart: on-failure
     depends_on:
       - redis

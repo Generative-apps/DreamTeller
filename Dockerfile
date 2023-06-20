@@ -30,6 +30,8 @@ USER appuser
 
 # back to root
 WORKDIR /dream
+RUN touh access.log && chmod 777 access.log
+RUN touch error.log && chmod 777 error.log
 
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--access-logfile access.log", "--error-logfile error.log" ,"backend.main:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--access-logfile", "access.log", "--error-logfile" , "error.log" ,"backend.main:app"]

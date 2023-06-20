@@ -4,11 +4,11 @@ server {
     server_name localhost;
 
     location /dream {
-        proxy_pass http://host.docker.internal:5000/dream;
+        proxy_pass http://172.17.0.1:5000/dream;
     }
 
     location / {
-        proxy_pass http://host.docker.internal:5001;
+        proxy_pass http://172.17.0.1:5001;
     }
 
 }
