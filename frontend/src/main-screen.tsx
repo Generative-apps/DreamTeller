@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo, useState, CSSProperties } from "react";
-import main from "./assets/images/main.png";
+import main from "./assets/images/main.jpg";
 import { Button, Fab, Typography } from "@mui/material";
 import { BalconyRounded } from "@mui/icons-material";
+import { useIsMobile } from "./common";
 const PHASES = [
   "Describe your dream",
   "answer questions",
@@ -9,6 +10,8 @@ const PHASES = [
 ];
 
 export function MainScreen() {
+  const isMobile = useIsMobile();
+  const styles = stylesFactory(isMobile);
   return (
     <div style={{ backgroundColor: "black" }}>
       <img src={main} style={styles.pic} alt="main pic" />
@@ -35,27 +38,29 @@ export function MainScreen() {
             Start
           </Fab>
         </div> */}
-        <div style={styles.textContainer}>
-          <Typography
-            variant="h4"
-            gutterBottom
-            sx={{ textDecoration: "underline" }}
-          >
-            Important Disclamir
-          </Typography>
-          <Typography variant="subtitle1" gutterBottom>
-            This app is intended for entertainment purposes only and is not
-            based on psychological reaserch. It works by instructing an LLM
-            model (similar to chatGPT) to generate a dream interpertation
-            according to Calvin Springer Hall's dream interpretation theory.
-          </Typography>
+        <div style={styles.fullwidth}>
+          <div style={styles.textContainer}>
+            <Typography
+              variant={isMobile ? "h5" : "h4"}
+              gutterBottom
+              sx={{ textDecoration: "underline" }}
+            >
+              Important Disclamir
+            </Typography>
+            <Typography variant="subtitle1" gutterBottom>
+              This app is intended for entertainment purposes only and is not
+              based on psychological reaserch. It works by instructing an LLM
+              model (similar to chatGPT) to generate a dream interpertation
+              according to Calvin Springer Hall's dream interpretation theory.
+            </Typography>
+          </div>
         </div>
       </div>
     </div>
   );
 }
 
-const styles: Record<string, CSSProperties> = {
+const stylesFactory = (isMobile: boolean): Record<string, CSSProperties> => ({
   pic: {
     width: "100%",
     height: "50vh",
@@ -75,9 +80,15 @@ const styles: Record<string, CSSProperties> = {
     marginBottom: 10,
     borderRadius: 50,
   },
-  textContainer: {
+  fullwidth: {
+    width: "100vw",
     flex: 4,
-    color: "white",
-    width: "50%",
+    display: "flex",
+    justifyContent: "center",
+    backgroundColor: "black",
   },
-};
+  textContainer: {
+    color: "white",
+    width: isMobile ? "80%" : "50%",
+  },
+});

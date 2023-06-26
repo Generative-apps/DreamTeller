@@ -27,7 +27,7 @@ import {
   sendDreamDescription,
   fetchinterpretation,
 } from "../api";
-import { question } from "../common";
+import { question, useIsMobile } from "../common";
 import { LoadingBarAnimation } from "./loading";
 import { useUserContext } from "../user_store";
 const PHASES = [
@@ -39,7 +39,7 @@ const PHASES = [
 const dreamPlaceholder =
   "I had a dream where I was sitting in a tent with some other people, all of them strangers, And the focus point was on this man who was just like a genie and he was telling stories. I found out from the people around me, that this man was called The Sandman.";
 
-function safeLoading(loading: boolean) {
+function safeLoading(loading: boolean, styles: Record<string, CSSProperties>) {
   if (loading)
     return (
       <div style={styles.mainFields}>
@@ -55,7 +55,8 @@ export function FormScreen() {
   const [interpretation, setinterpretation] = useState("");
   const [questions, setQuestions] = useState<question[]>([]);
   const { state: user, dispatch } = useUserContext();
-
+  const isMobile = useIsMobile();
+  const styles = stylesFactory(isMobile);
   const {
     fetch: fetchDream,
     res: questionRes,
@@ -152,7 +153,7 @@ export function FormScreen() {
           </Step>
         ))}
       </Stepper>
-      {safeLoading(loading)}
+      {safeLoading(loading, styles)}
 
       {!loading && error && (
         <div style={styles.mainFields}>
@@ -226,7 +227,7 @@ export function FormScreen() {
   );
 }
 
-const styles: Record<string, CSSProperties> = {
+const stylesFactory = (isMobile: boolean): Record<string, CSSProperties> => ({
   container: {
     // flexGrow: 4,
     background: "#20242A",
@@ -239,12 +240,13 @@ const styles: Record<string, CSSProperties> = {
   },
   disclamir: {
     marginBottom: 5,
-    width: "70%",
+    marginTop: 5,
+    width: isMobile ? "90%" : "70%",
   },
 
   mainFields: {
     flexGrow: 3,
-    width: "65%",
+    width: isMobile ? "90%" : "65%",
     display: "flex",
     flexDirection: "column",
   },
@@ -253,4 +255,4 @@ const styles: Record<string, CSSProperties> = {
     padding: 2,
     // border: "1px solid gray",
   },
-};
+});
