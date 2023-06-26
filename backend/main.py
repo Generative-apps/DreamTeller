@@ -21,6 +21,7 @@ static_folder = dirname(dirname(__file__)) + '/frontend/build'
 print("static folder: ", static_folder)
 # if config['environment'] == "prod":
 STANDALONE_MODE = config['environment'] == "dev"
+print('STANDALONE_MODE: ', STANDALONE_MODE)
 app = Flask(__name__, static_folder=static_folder, static_url_path='/dream')
 # else:
     # app = Flask(__name__)
