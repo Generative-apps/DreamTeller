@@ -6,9 +6,10 @@ from uuid import uuid1
 max_reached_msg = "You have reached the maximum number of interpretations for this dream. Please wait 24 hours to try again."
 from os.path import dirname
 from time import sleep
+workspace = dirname(dirname(__file__))
 
 try:
-    config = json.load(open('../config.json', 'r'))
+    config = json.load(open(f'{workspace}/config.json', 'r'))
 except FileNotFoundError:
     print("no config file found, using default config")
     config = {
@@ -17,7 +18,7 @@ except FileNotFoundError:
     }
 
 
-static_folder = dirname(dirname(__file__)) + '/frontend/build' 
+static_folder = f'{workspace}/frontend/build' 
 print("static folder: ", static_folder)
 # if config['environment'] == "prod":
 STANDALONE_MODE = config['environment'] == "dev"
