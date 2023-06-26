@@ -3,3 +3,4 @@ langchain
 redis
 apscheduler
 gunicorn
+openai
