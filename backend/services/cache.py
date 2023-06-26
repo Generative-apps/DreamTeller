@@ -35,7 +35,9 @@ def delete_old_records():
     for key in redis_instance.scan_iter():
         idle = redis_instance.object("idletime", key)
         if idle >=  3600:
-            redis_instance.delete(key)
+            obj = redis_instance.get(key)
+            obj['num_interpretations'] = 0
+            set(key, obj)
 
 def start(hour_delete_interval:int, config:dict):
 
