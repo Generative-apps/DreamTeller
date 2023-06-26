@@ -29,8 +29,10 @@ app = Flask(__name__, static_folder=static_folder, static_url_path='/dream')
 
 interpreter = DreamInterpreter(config)
 
-# from time import sleep
 
+
+print("Starting cache...")
+cache.start(hour_delete_interval=1, config=config)
 
 @app.route("/dream/app", methods=['GET'])
 def index(any=None):
@@ -54,7 +56,6 @@ def dreamtell():
     dream, user_id = request.json['dream'], request.json.get('user_id', generate_user_id())
 
 
-
     print("got", request.json)
     try:
         if STANDALONE_MODE:
@@ -63,6 +64,9 @@ def dreamtell():
         else:
             formatted_questions = interpreter.start_interpretation(dream, user_id)
         
+    except MaxInterpretationsError:
+        return Response(json.dumps({"error": max_reached_msg}), status=403, mimetype='application/json')
+
     except MaxInterpretationsError:
         return Response(json.dumps({"error": max_reached_msg}), status=403, mimetype='application/json')
     
@@ -84,8 +88,6 @@ def dreamanswer():
 
 
 if __name__ == "__main__":
-    print("Starting cache...")
-    cache.start(hour_delete_interval=1, config=config)
     print("starting server...")
     app.run(debug=True, host='0.0.0.0', port=5000)
 
