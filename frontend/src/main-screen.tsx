@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState, CSSProperties } from "react";
 import main from "./assets/images/main.png";
-import { Fab, Typography } from "@mui/material";
+import { Button, Fab, Typography } from "@mui/material";
 import { BalconyRounded } from "@mui/icons-material";
 const PHASES = [
   "Describe your dream",
@@ -13,10 +13,15 @@ export function MainScreen() {
     <div style={{ backgroundColor: "black" }}>
       <img src={main} style={styles.pic} alt="main pic" />
       <div style={styles.container}>
-        {/* <Button style={styles.button} size="large" variant="contained">
-        start
-      </Button> */}
-        <div>
+        <Button
+          sx={styles.button}
+          size="large"
+          variant="contained"
+          href="/dream/app"
+        >
+          start
+        </Button>
+        {/* <div>
           <Fab
             sx={styles.button}
             // style={styles.button}
@@ -29,7 +34,7 @@ export function MainScreen() {
             <BalconyRounded sx={{ mr: 1 }} />
             Start
           </Fab>
-        </div>
+        </div> */}
         <div style={styles.textContainer}>
           <Typography
             variant="h4"
@@ -68,6 +73,7 @@ const styles: Record<string, CSSProperties> = {
     height: 100,
     fontSize: 30,
     marginBottom: 10,
+    borderRadius: 50,
   },
   textContainer: {
     flex: 4,
